@@ -1,0 +1,158 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:disparador="clr-namespace:CalculadoraMVVM_SAEG.Triggers"
+             x:Class="CalculadoraMVVM_SAEG.MainPage">
+    <ContentPage.Resources>
+        <Style TargetType="Button">
+            <Setter Property="HorizontalOptions" Value="Center"/>
+            <Setter Property="VerticalOptions" Value="Center"/>
+            <Setter Property="CornerRadius" Value="60"/>
+            <Setter Property="BackgroundColor" Value="Transparent"/>
+            <Setter Property="FontSize" Value="28"/>
+            <!--<Setter Property="FontAttributes" Value="Bold" />-->
+            <Setter Property="Margin" Value="0, 5, 0, 5" />
+            <Style.Triggers>
+                <Trigger TargetType="Button" 
+                         Property="IsPressed" 
+                         Value="True">
+                    <Setter Property="BackgroundColor" Value="#333"/>
+                </Trigger>
+                <EventTrigger Event="Clicked">
+                    <disparador:TriggerNumeros TargetLabel="{Reference procedimiento}"/>
+                </EventTrigger>
+            </Style.Triggers>
+        </Style>
+        
+    </ContentPage.Resources>
+    <StackLayout BackgroundColor="#000">
+        <Frame BackgroundColor="Transparent" 
+               Padding="0,96,24,0" >
+            <Grid Padding="0,60,0,-10">
+                <Label Text="{Binding Procedimiento}" 
+                       HorizontalTextAlignment="End" 
+                       TextColor="White" 
+                       FontSize="52"
+                       Grid.Row="{Binding PosicionLabelProcedimiento}"
+                       x:Name="procedimiento"/>
+                <Label Text="{Binding Resultado}" 
+                       HorizontalTextAlignment="End" 
+                       TextColor="#AAA" 
+                       FontSize="48"
+                       Grid.Row="{Binding PosicionLabelResultado}"
+                       IsVisible="{Binding LabelSecundario}"/>
+            </Grid>
+        </Frame>
+        <Frame BackgroundColor="Transparent"
+               BorderColor="#222"
+               Margin="0,0,0,0">
+            <Grid>
+                <Button Grid.Row="0"
+                        Grid.Column="0"
+                        Text="AC"
+                        TextColor="DarkOrange"
+                        Command="{Binding BorrarTodoCommand}"
+                        />
+
+                <Button Grid.Row="0"
+                        Grid.Column="1"
+                        Text="Del"
+                        TextColor="DarkOrange"/>
+
+                <Button Grid.Row="0"
+                        Grid.Column="2"
+                        Text="%"
+                        TextColor="DarkOrange"/>
+
+                <Button Grid.Row="0"
+                        Grid.Column="3"
+                        Text="/"
+                        TextColor="DarkOrange"/>
+
+                <Button Grid.Row="1"
+                        Grid.Column="0"
+                        Text="7"
+                        ClassId="Numero"/>
+
+                <Button Grid.Row="1"
+                        Grid.Column="1"
+                        Text="8"
+                        ClassId="Numero"/>
+
+                <Button Grid.Row="1"
+                        Grid.Column="2"
+                        Text="9"
+                        ClassId="Numero"/>
+
+                <Button Grid.Row="1"
+                        Grid.Column="3"
+                        Text="x"
+                        TextColor="DarkOrange"/>
+
+                <Button Grid.Row="2"
+                        Grid.Column="0"
+                        Text="4"
+                        ClassId="Numero"/>
+
+                <Button Grid.Row="2"
+                        Grid.Column="1"
+                        Text="5"
+                        ClassId="Numero"/>
+
+                <Button Grid.Row="2"
+                        Grid.Column="2"
+                        Text="6"
+                        ClassId="Numero"/>
+
+                <Button Grid.Row="2"
+                        Grid.Column="3"
+                        Text="­─"
+                        TextColor="DarkOrange"/>
+
+                <Button Grid.Row="3"
+                        Grid.Column="0"
+                        Text="1"
+                        ClassId="Numero"/>
+
+                <Button Grid.Row="3"
+                        Grid.Column="1"
+                        Text="2"
+                        ClassId="Numero"/>
+
+                <Button Grid.Row="3"
+                        Grid.Column="2"
+                        Text="3"
+                        ClassId="Numero"/>
+
+                <Button Grid.Row="3"
+                        Grid.Column="3"
+                        Text="+"
+                        TextColor="DarkOrange"/>
+
+                <Button Grid.Row="4"
+                        Grid.Column="0"
+                        Text="MOD"
+                        TextColor="DarkOrange"
+                        FontSize="25"
+                        FontAttributes="Bold"/>
+
+                <Button Grid.Row="4"
+                        Grid.Column="1"
+                        Text="0"
+                        ClassId="Numero"/>
+
+                <Button Grid.Row="4"
+                        Grid.Column="2"
+                        Text="."
+                        FontAttributes="Bold"/>
+
+                <Button Grid.Row="4"
+                        Grid.Column="3"
+                        Text="="
+                        BackgroundColor="DarkOrange"
+                        FontSize="35"
+                        Command="{Binding SacarResultadoCommand}"/>
+            </Grid>
+        </Frame>
+    </StackLayout>
+</ContentPage>
